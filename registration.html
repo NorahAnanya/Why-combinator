@@ -10,11 +10,23 @@
 <pre id="msg">Test with dummies</pre>
 <script>
 const API = 'https://replit.com/@notsteppenwolf/why-backend?v=1';
-document.getElementById('form').onsubmit = async e => {
+document.getElementById('form').onsubmit = async (e) => {
   e.preventDefault();
-  const data = {name:document.getElementById('name').value, regNumber:document.getElementById('reg').value, email:document.getElementById('email').value};
-  const res = await fetch(API + '/register', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
-  document.getElementById('msg').textContent = JSON.stringify(await res.json());
+
+  const data = {
+    name: document.getElementById('name').value,
+    regNumber: document.getElementById('reg').value,
+    email: document.getElementById('email').value
+  };
+
+  const res = await fetch(API + '/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+
+  const json = await res.json();
+  document.getElementById('msg').textContent = JSON.stringify(json, null, 2);
 };
 </script>
 </body></html>
