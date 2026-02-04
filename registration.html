@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><body style="padding:50px;font-family:sans-serif">
+<h1>Why Combinator Registration</h1>
+<form id="form">
+  Name: <input id="name"><br><br>
+  Reg#: <input id="reg"><br><br>
+  Email: <input id="email" type="email"><br><br>
+  <button>Register</button>
+</form>
+<pre id="msg">Test with dummies</pre>
+<script>
+const API = 'YOUR-BACKEND-URL-HERE/api';  // Add later
+document.getElementById('form').onsubmit = async e => {
+  e.preventDefault();
+  const data = {name:document.getElementById('name').value, regNumber:document.getElementById('reg').value, email:document.getElementById('email').value};
+  const res = await fetch(API + '/register', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
+  document.getElementById('msg').textContent = JSON.stringify(await res.json());
+};
+</script>
+</body></html>
